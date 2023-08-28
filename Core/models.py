@@ -1,25 +1,18 @@
 from django.db import models
 
-from django.contrib.auth.models import User
 
-class Servico(models.Model):
-    nome = models.CharField(max_length=100)
-    # Outros campos relacionados ao serviço
+class Pesquisa(models.Model):
+    Estado = models.CharField(max_length=2)
 
-class Agendamento(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    servico = models.ForeignKey(Servico, on_delete=models.CASCADE)
-    data = models.DateField()
-    hora = models.TimeField()
-    # Outros campos relacionados ao agendamento
-
-    class Meta:
-        unique_together = ['data', 'hora']  # Impede agendamentos duplicados
-
-class AgendaDisponivel(models.Model):
-    data = models.DateField()
-    horarios_disponiveis = models.ManyToManyField('HorarioDisponivel')
-
-class HorarioDisponivel(models.Model):
-    hora = models.TimeField()
-    disponivel = models.BooleanField(default=True)
+class Imoveis(models.Model):
+    NUMERO_IMOVEL = models.CharField(max_length=20, blank=False)
+    UF = models.CharField(max_length=2 , blank=False)
+    CIDADE = models.CharField(max_length=50, blank=False)
+    BAIRRO = models.CharField(max_length=50, blank=False)
+    ENDERECO = models.CharField(max_length=100, blank=False)
+    PRECO = models.FloatField(blank=False)
+    VALOR_AVALIACAO = models.FloatField(blank=False)
+    DESCONTO = models.DecimalField
+    DESCRICAO = models.CharField(max_length=100,blank=False)
+    MODALIDADE_VENDA = models.CharField(max_length=20 , blank=False)
+    LINK_ACESSO = models.CharField(max_length=150 , blank=False)

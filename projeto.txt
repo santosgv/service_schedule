@@ -1,0 +1,42 @@
+Descrição do Projeto:
+- BackEnd
+- Linguagem Python (de preferência serverless)
+- Servidor Localweb (Linux, MySQL)
+
+Rodar rotina no server 23:15h todos os dias:
+
+Resumidamente: Ler 26 arquivos CVS (1 para cada estado do Brasil), tratar os dados e depois inseri-los em um banco de dados MySQL
+
+Detalhadamente:
+
+1- efetuar download do arquivo CSV de cada estado do Brasil, pelo link:
+https://venda-imoveis.caixa.gov.br/listaweb/Lista_imoveis_XX.csv
+* Sendo XX o estado.
+
+2- depois verificar a data do arquivo CSV (coluna D2). Se for igual ao BD abortar o processo naquele dia. Se for diferente, seguir o fluxo abaixo:
+
+3 - tratar os dados
+a) Arrumar colunas desalinhadas. Na coluna H em alguns registros, onde deveria ter o "Preço" as vezes fica um pedaço da coluna G, desalinhando todas as próximas colunas. Corrigir isso
+
+b) Obter o tipo do imóvel na coluna "Descrição". Ex: Casa, apartamento, etc...
+
+c) Obter na mesma coluna "Descrição" o valor numerico da área privativa (ex: 45,9 m2), gravar 45.9
+
+d) Obter na mesma coluna "Descrição" as características do imóvel (2 quartos, sala, cozinha...)
+
+e) Obter o CEP do imóvel, numero do item no edital, numero do edital e data do edital, se aceita financiamento, fgts afim de preencger toda a tabela imovel. Sugestão:
+link:
+https://venda-imoveis.caixa.gov.br/sistema/detalhe-imovel.asp?hdnOrigem=index&hdnimovel=XXXXXXXX
+sendo XXXXX o número do imóvel
+
+f) Calcular o preço do m2 baseando-se na formula:
+custo m2 = valor de avaliação / m2
+
+g) atribuir codigo do banco como CEF (codigo: 1)
+
+h) atribuir os campos modalidade e tipo de imovel (conforme informações nas tabelas auxiliares tipo_imovel e modalidade)
+
+4- Gravar dados no Banco de Dados
+Caso tenha gravado algum dado no BD, ao final do procedimento enviar um e-mail.
+
+Observação: Esse código deve ser exclusivo desse projeto e desse solicitante.

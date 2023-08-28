@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from Core.models import AgendaDisponivel,Agendamento
+from Core.models import Pesquisa, Imoveis
 
-class AgendaDisponivelSerializer(serializers.ModelSerializer):
+class PesquisaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AgendaDisponivel
+        model =  Pesquisa
         fields = '__all__'
         
-class AgendaSerielizer(serializers.ModelSerializer):
+class ImoveisSerielizer(serializers.ModelSerializer):
     class Meta:
-        model = Agendamento
+        model = Imoveis
         fields = '__all__'
